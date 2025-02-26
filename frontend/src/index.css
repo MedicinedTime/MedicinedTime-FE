@@ -10,3 +10,6 @@
 html {
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
+.wrap {
+  @apply flex justify-center items-center h-screen
+}

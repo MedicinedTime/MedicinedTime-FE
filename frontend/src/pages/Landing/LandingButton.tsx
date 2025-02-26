@@ -9,7 +9,7 @@ const LandingButton = () => {
 
   return (
     <button 
-      className="btn btn-primary" 
+      className="btn btn-primary w-full" 
       onClick={handleButtonClick}
     >
       시작하기

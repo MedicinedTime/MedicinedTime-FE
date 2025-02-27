@@ -5,11 +5,14 @@
 @tailwind utilities;
 
 *{
-  margin: 0;
+  @apply m-0 bg-myBaseBrown
 }
 html {
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 .wrap {
-  @apply flex justify-center items-center h-screen
+  @apply flex justify-center items-center h-screen w-full
+}
+.container {
+  @apply w-[500px]
 }

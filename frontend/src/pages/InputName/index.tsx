@@ -1,10 +1,11 @@
-import Hero from "./Hero";
+import NameForm from "@/pages/InputName/NameForm";
 
-export default function LandingPage() {
+
+export default function InputNamePage() {
     return (
         <section className="wrap">
             <div className="container">
-                <Hero/>
+                <NameForm/>
             </div>
         </section>
     )

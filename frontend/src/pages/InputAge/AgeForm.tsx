@@ -16,7 +16,7 @@ export default function AgeForm() {
     const isValueValid = value.trim().length > 0
 
     return (
-        <div className="flex flex-col justify-center items-center gap-10">
+        <div className="center flex-col gap-10">
             <Text5xl>나이를 입력해 주세요.</Text5xl>
             <form 
             onSubmit={onSubmit}

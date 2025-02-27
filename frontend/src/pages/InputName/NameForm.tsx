@@ -18,7 +18,7 @@ export default function NameForm() {
   const isValueValid = value.trim().length > 0
 
   return (
-    <div className="flex flex-col justify-center items-center gap-10">
+    <div className="center flex-col gap-10">
       <Text5xl>이름을 입력해 주세요.</Text5xl>
       <form onSubmit={onSubmit} className="flex flex-col w-80 gap-3">
         <input

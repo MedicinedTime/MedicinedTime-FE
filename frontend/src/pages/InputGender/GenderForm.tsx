@@ -14,7 +14,7 @@ export default function GenderForm() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center gap-10">
+        <div className="center flex-col gap-10">
             <Text5xl>성별을 선택해 주세요.</Text5xl>
             <form 
             onSubmit={onSubmit}

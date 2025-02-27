@@ -22,7 +22,7 @@ export default function GenderForm() {
                 <div className="flex justify-center w-full">
                     <APIButton
                     url={"api/gender"}
-                    path="#"
+                    path="info/check"
                     name="남자"
                     className="w-full"
                     data={{gender: "m"}}
@@ -32,7 +32,7 @@ export default function GenderForm() {
                 <div className="flex justify-center w-full">
                     <APIButton
                     url={"api/gender"}
-                    path="#"
+                    path="info/check"
                     name="여자"
                     className="w-full"
                     data={{gender: "f"}}

@@ -13,7 +13,9 @@ export const usePostStore = create<PostState>((set) => ({
   postData: async (url, data) => {
     set({ isLoading: true })
     try {
-      await axios.post(url, data)
+      await axios.post(url, data, {
+        withCredentials: true
+      })
     } catch (error) {
       console.log('Post request failed but treated as success:', error)
     } finally {
@@ -24,7 +26,9 @@ export const usePostStore = create<PostState>((set) => ({
   patchData: async (url, data) => {
     set({ isLoading: true })
     try {
-      await axios.patch(url, data)
+      await axios.patch(url, data, {
+        withCredentials: true
+      })
     } catch (error) {
       console.log('Post request failed but treated as success:', error)
     } finally {

@@ -9,5 +9,9 @@ export default defineConfig({
       { find: '@', replacement: '/src' },
       { find: 'node_modules', replacement: '/node_modules' }
     ]
+  },
+  server: {
+    port: 3000,
+    strictPort: true,
   }
 })

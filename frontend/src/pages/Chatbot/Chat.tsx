@@ -31,7 +31,9 @@ export default function Chat({ url }: ChatProps) {
   useEffect(() => {
     const fetchChatHistory = async () => {
       try {
-        const response = await axios.get(`${url}/history`)
+        const response = await axios.get(`${url}/history`, {
+          withCredentials: true,
+        })
         const history: ChatHistory[] | null = response.data
         
         if (history && Array.isArray(history) && history.length > 0) {

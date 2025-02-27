@@ -30,7 +30,9 @@ export default function Card({ url }: CardProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${url}`)
+        const response = await axios.get(`${url}`, {
+          withCredentials: true
+        })
         setData(response.data)
       } catch (error) {
         console.error('Axios error:', error)

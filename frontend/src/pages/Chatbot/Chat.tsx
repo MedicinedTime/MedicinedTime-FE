@@ -1,4 +1,4 @@
-import { Text5xl } from '@/components/ui/Texts'
+import { Text5xl } from '@/components/Texts'
 import Answer from './Answer'
 import Question from './Question'
 import ChatForm from './ChatForm'
@@ -14,7 +14,7 @@ type ChatProps = {
   url: string
 }
 
-export default function Chat({url}: ChatProps) {
+export default function Chat({ url }: ChatProps) {
   const [value, setValue] = useState('')
 
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -62,11 +62,14 @@ export default function Chat({url}: ChatProps) {
 
   return (
     <div className="container center flex-col gap-3">
-      <Text5xl className='mb-3'>무엇이든 물어보세요!</Text5xl>
+      <Text5xl className="mb-3">무엇이든 물어보세요!</Text5xl>
       <div className="flex flex-col w-full h-[600px] p-10 rounded-lg bg-black gap-5 overflow-y-auto">
         <div className="flex flex-col w-full gap-5">
           {messages.map((message, index) => (
-            <div key={index} className={`flex ${message.type === 'question' ? 'justify-end' : 'justify-start'}`}>
+            <div
+              key={index}
+              className={`flex ${message.type === 'question' ? 'justify-end' : 'justify-start'}`}
+            >
               <div className="w-2/3">
                 {message.type === 'question' ? <Question data={message.data} /> : <Answer data={message.data} />}
               </div>
@@ -85,7 +88,11 @@ export default function Chat({url}: ChatProps) {
         </div>
       </div>
 
-      <ChatForm value={value} onChange={handleInputChange} onSubmit={handleSubmit} />
+      <ChatForm
+        value={value}
+        onChange={handleInputChange}
+        onSubmit={handleSubmit}
+      />
     </div>
   )
 }

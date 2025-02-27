@@ -42,6 +42,7 @@ export default function MedicationForm({ url }: MedicationFormProps) {
     if (medicationName.trim() !== '' && !medicationTags.includes(medicationName)) {
       setMedicationTags([...medicationTags, medicationName])
     }
+    setValue([{ type: '', day: '', frequency: '' }])
   }
 
   const handleRemoveTag = (tagToRemove: string) => {

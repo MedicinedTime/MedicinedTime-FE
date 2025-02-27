@@ -34,10 +34,17 @@ export default function MedicationCard({ medication, onChange, onAdd }: Medicati
 
   const handleAddClick = (e: React.MouseEvent) => {
     e.preventDefault()
-    if (medication.type.trim() !== '') {
+    if (isFormComplete) {
       onAdd()
+    } else {
+      alert("모든 칸을 입력해 주세요.")
     }
   }
+
+  const isFormComplete = 
+  medication.type.trim() !== '' && 
+  medication.day.trim() !== '' && 
+  medication.frequency.trim() !== ''
 
   return (
     <div className={CardClassName}>
@@ -50,6 +57,7 @@ export default function MedicationCard({ medication, onChange, onAdd }: Medicati
             type="text"
             value={medication.type}
             onChange={handleTypeChange}
+            required
           />
         </div>
         <div className="flex center w-full gap-3">
@@ -60,6 +68,7 @@ export default function MedicationCard({ medication, onChange, onAdd }: Medicati
             min={1}
             value={medication.day}
             onChange={handleDayChange}
+            required
           />
           <Text2xl className="flex items-center justify-center">일에</Text2xl>
           <input
@@ -69,6 +78,7 @@ export default function MedicationCard({ medication, onChange, onAdd }: Medicati
             min={1}
             value={medication.frequency}
             onChange={handleFrequencyChange}
+            required
           />
           <Text2xl className="flex items-center justify-center">번 먹는다.</Text2xl>
         </div>

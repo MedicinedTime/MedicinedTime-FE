@@ -7,7 +7,7 @@ export default function InfoPost() {
         <div className="container center flex-col gap-5">
             <Text5xl>입력한 정보를<br/>최종 확인해 주세요.</Text5xl>
             <div className="center flex-col gap-10">
-                <Card/>
+                <Card path={"/api/medications"}/>
                 <div className="center gap-3">
                     <RedirectButton
                     path="info/input/name"

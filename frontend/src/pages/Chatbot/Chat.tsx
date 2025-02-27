@@ -10,20 +10,50 @@ interface ChatMessage {
   data: string
 }
 
+interface ChatHistory {
+  id: number
+  question: string
+  answer: string
+}
+
 type ChatProps = {
   url: string
 }
 
 export default function Chat({ url }: ChatProps) {
   const [value, setValue] = useState('')
-
   const [messages, setMessages] = useState<ChatMessage[]>([
     { type: 'answer', data: '안녕하세요! 저는 챗봇 AI 약속이예요. 무엇이 궁금하신가요?' },
   ])
-
   const [isLoading, setIsLoading] = useState(false)
-
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      try {
+        const response = await axios.get(`${url}/history`)
+        const history: ChatHistory[] | null = response.data
+        
+        if (history && Array.isArray(history) && history.length > 0) {
+          const sortedHistory = [...history].sort((a, b) => a.id - b.id)
+          
+          const historyMessages: ChatMessage[] = []
+          sortedHistory.forEach((item) => {
+            historyMessages.push({ type: 'question', data: item.question })
+            historyMessages.push({ type: 'answer', data: item.answer })
+          })
+          
+          setMessages([
+            { type: 'answer', data: '안녕하세요! 저는 챗봇 AI 약속이예요. 무엇이 궁금하신가요?' },
+            ...historyMessages
+          ])
+        }
+      } catch (error) {
+        console.error('대화 내역을 불러오는 중 오류가 발생했습니다:', error)
+      }
+    }
+    fetchChatHistory()
+  }, [url])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -44,11 +74,10 @@ export default function Chat({ url }: ChatProps) {
 
     try {
       const response = await axios.post(`${url}`, { question: text })
-
       const newAnswer: ChatMessage = { type: 'answer', data: response.data.answer }
       setMessages((prev) => [...prev, newAnswer])
     } catch (error) {
-      console.error('Error sendinxg message to server:', error)
+      console.error('서버에 메시지를 보내는 중 오류가 발생했어요:', error)
 
       const errorMessage: ChatMessage = {
         type: 'answer',

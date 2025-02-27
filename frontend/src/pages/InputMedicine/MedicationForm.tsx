@@ -63,7 +63,7 @@ export default function MedicationForm({ url }: MedicationFormProps) {
   }
   
   const apiData = {
-    medications_json: JSON.stringify(savedMedications),
+    medications: JSON.stringify(savedMedications),
     total: savedMedications.length.toString(),
   }
 

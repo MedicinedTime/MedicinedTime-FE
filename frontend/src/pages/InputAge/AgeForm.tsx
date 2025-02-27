@@ -23,7 +23,7 @@ export default function AgeForm() {
             className="flex flex-col w-80 gap-3">
                 <input
                 placeholder="50"
-                className="text-center w-full h-12 bg-white border border-gray-300 focus:border-myLightGreen"
+                className="text-center w-full h-12 bg-white border-2 focus:border-myLightGreen focus:outline-none"
                 type="number"
                 min="1"
                 max="150"

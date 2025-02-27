@@ -1,14 +1,7 @@
 import { Text5xl } from "@/components/ui/Texts";
-import { APIButton, RedirectButton } from "../../components/ui/Button";
-import { useState } from "react";
+import { APIButton } from "../../components/ui/Button";
 
 export default function GenderForm() {
-    const [name, setName] = useState('')
-
-    const onChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const {currentTarget : {value},} = event
-        setName(value)
-    }
     const onSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }

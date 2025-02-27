@@ -90,9 +90,9 @@ export default function Chat({ url }: ChatProps) {
   }
 
   return (
-    <div className="container center flex-col gap-3">
+    <div className="container center flex-col h-full gap-3 py-5">
       <Text5xl className="mb-3">무엇이든 물어보세요!</Text5xl>
-      <div className="flex flex-col w-full h-[600px] p-10 rounded-lg bg-black gap-5 overflow-y-auto">
+      <div className="flex flex-col w-full h-full p-10 rounded-lg bg-black gap-5 overflow-y-auto">
         <div className="flex flex-col w-full gap-5">
           {messages.map((message, index) => (
             <div

@@ -38,7 +38,12 @@ export default function AgeForm({ url }: AgeFormProps) {
     const {
       currentTarget: { value },
     } = event
-    setValue(value)
+    if (Number(value) > 0 && Number(value) <= 100) {
+      setValue(value)
+    } else {
+      alert("1~100 사이의 값을 입력해 주세요.")
+      // setValue('')
+    }
   }
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -60,7 +65,7 @@ export default function AgeForm({ url }: AgeFormProps) {
           className={InputClassName}
           type="number"
           min="1"
-          max="150"
+          max="100"
           step="1"
           value={value}
           onChange={onChange}

@@ -10,7 +10,11 @@ interface ChatMessage {
   data: string
 }
 
-export default function Chat() {
+type ChatProps = {
+  url: string
+}
+
+export default function Chat({url}: ChatProps) {
   const [value, setValue] = useState('')
 
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -39,7 +43,7 @@ export default function Chat() {
     setIsLoading(true)
 
     try {
-      const response = await axios.post('/api/chat', { question: text })
+      const response = await axios.post(`${url}`, { question: text })
 
       const newAnswer: ChatMessage = { type: 'answer', data: response.data.answer }
       setMessages((prev) => [...prev, newAnswer])

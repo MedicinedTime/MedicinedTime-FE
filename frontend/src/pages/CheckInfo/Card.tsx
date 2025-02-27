@@ -19,7 +19,8 @@ interface ApiResponse {
   gender: string
   taking_medicine: Array<{
     type: string
-    per_day: string
+    day: string
+    frequency: string
   }>
 }
 
@@ -81,12 +82,12 @@ export default function Card({ path }: CardProps) {
                   약의 종류
                 </th>
                 <td className={tdStyle}>{data.taking_medicine[0].type}</td>
-                <td className={tdStyle}>{data.taking_medicine[0].per_day}</td>
+                <td className={tdStyle}>{data.taking_medicine[0].day}일에 {data.taking_medicine[0].frequency}번</td>
               </tr>
               {data.taking_medicine.slice(1).map((med, index) => (
                 <tr key={index}>
                   <td className={tdStyle}>{med.type}</td>
-                  <td className={tdStyle}>{med.per_day}</td>
+                  <td className={tdStyle}>{med.day}일에 {med.frequency}번</td>
                 </tr>
               ))}
             </>

@@ -24,7 +24,7 @@ export default function GenderForm({ url }: GenderFormProps) {
             url={`${url}`}
             path={path}
             name="남자"
-            className="w-full h-12 text-2xl"
+            className="w-full h-16 text-2xl"
             data={{ gender: 'm' }}
             method={'PATCH'}
           />
@@ -34,7 +34,7 @@ export default function GenderForm({ url }: GenderFormProps) {
             url={`${url}`}
             path={path}
             name="여자"
-            className="w-full h-12 text-2xl"
+            className="w-full h-16 text-2xl"
             data={{ gender: 'f' }}
             method={'PATCH'}
           />

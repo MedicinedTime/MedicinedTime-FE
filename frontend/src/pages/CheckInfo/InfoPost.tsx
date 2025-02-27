@@ -20,12 +20,12 @@ export default function InfoPost({ url }: InfoPostProps) {
           <RedirectButton
             path="info/input/name"
             name="수정하기"
-            className="w-full"
+            className="w-2/3"
           />
           <RedirectButton
             path="chatbot"
             name="챗봇에게 질문하기"
-            className="w-full"
+            className="w-2/3"
           />
         </div>
       </div>

@@ -14,5 +14,5 @@ html {
   @apply flex justify-center items-center h-screen w-full
 }
 .container {
-  @apply w-[500px]
+  @apply w-[800px]
 }

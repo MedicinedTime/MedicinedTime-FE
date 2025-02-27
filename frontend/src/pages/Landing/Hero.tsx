@@ -3,7 +3,7 @@ import { Title } from "@/components/ui/Texts"
 
 export default function Hero() {
     return (
-        <div className="flex flex-col justify-center items-center gap-10">
+        <div className="container center flex-col gap-10">
             <div className="flex flex-col justify-center items-center gap-3">
                 <Title>약속시간</Title>
                 <div className="text-xl font-semibold">

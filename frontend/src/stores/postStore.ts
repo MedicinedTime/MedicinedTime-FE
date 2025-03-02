@@ -3,8 +3,8 @@ import axios from 'axios'
 
 interface PostState {
   isLoading: boolean
-  postData: (url: string, data: Record<string, string | number>) => Promise<void>
-  patchData: (url: string, data: Record<string, string | number>) => Promise<void>
+  postData: (url: string, data: Record<string, any | number>) => Promise<void>
+  patchData: (url: string, data: Record<string, any | number>) => Promise<void>
 }
 
 export const usePostStore = create<PostState>((set) => ({

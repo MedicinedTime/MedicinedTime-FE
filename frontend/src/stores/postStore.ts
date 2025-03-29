@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import axios from 'axios'
 
 interface PostState {
   isLoading: boolean
@@ -13,8 +12,13 @@ export const usePostStore = create<PostState>((set) => ({
   postData: async (url, data) => {
     set({ isLoading: true })
     try {
-      await axios.post(url, data, {
-        withCredentials: true
+      await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
       })
     } catch (error) {
       console.log('Post request failed but treated as success:', error)
@@ -26,11 +30,16 @@ export const usePostStore = create<PostState>((set) => ({
   patchData: async (url, data) => {
     set({ isLoading: true })
     try {
-      await axios.patch(url, data, {
-        withCredentials: true
+      await fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
       })
     } catch (error) {
-      console.log('Post request failed but treated as success:', error)
+      console.log('Patch request failed but treated as success:', error)
     } finally {
       set({ isLoading: false })
     }

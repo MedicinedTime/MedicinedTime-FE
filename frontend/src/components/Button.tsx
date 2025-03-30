@@ -6,35 +6,46 @@ type ReactButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >
+
 const buttonLayout = 'btn bg-myLightGreen hover:bg-myHoverLightGreen'
 const buttonText = 'text-white text-xl'
+const disabledStyle = 'bg-gray-300 text-gray-500 hover:bg-gray-300 cursor-not-allowed'
 
 type RedirectButtonProps = ReactButtonProps & {
-  path: string,
-  name: string,
+  path: string
+  name: string
+  disabled?: boolean
 }
 
 export const RedirectButton = ({
-  path, name, className: _className
-}: RedirectButtonProps ) => {
-  const navigate = useNavigate();
+  path,
+  name,
+  className: _className,
+  disabled = false,
+  ...props
+}: RedirectButtonProps) => {
+  const navigate = useNavigate()
 
   const handleButtonClick = () => {
-    navigate(`/${path}`);
+    if (disabled) return
+    navigate(`/${path}`)
   }
 
   const className = [
     _className,
     buttonLayout,
-    buttonText
+    buttonText,
+    disabled ? disabledStyle : ''
   ]
-  .filter(Boolean)
-  .join(' ')
+    .filter(Boolean)
+    .join(' ')
 
   return (
-    <button 
+    <button
       className={className}
       onClick={handleButtonClick}
+      disabled={disabled}
+      {...props}
     >
       {name}
     </button>

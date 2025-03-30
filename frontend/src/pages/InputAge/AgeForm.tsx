@@ -1,57 +1,48 @@
 import { Text5xl } from '@/components/Texts'
-import { APIButton } from '../../components/Button'
+import { RedirectButton } from '@/components/Button'
 import { useEffect, useState } from 'react'
-import axios from 'node_modules/axios'
+import FormProps from '@/types/FormProps'
 
 const InputLayout = "text-2xl text-center w-full h-16 bg-white border-2 focus:border-myLightGreen focus:outline-none"
 const InputExcept = "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 const InputClassName = `${InputLayout} ${InputExcept}`
 
-type AgeFormProps = {
-  url: string
-}
-
-export default function AgeForm({ url }: AgeFormProps) {
+export default function AgeForm({ path }: FormProps) {
   const [value, setValue] = useState('')
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`${url}`, {
-          withCredentials: true,
-        })
-
-        if (response.data && response.data.name) {
-          setValue(response.data.name)
-        }
-      } catch (error) {
-        console.error('사용자 데이터 불러오기 실패:', error)
-      } finally {
-        setLoading(false)
-      }
+    const storedAge = sessionStorage.getItem('age')
+    if (storedAge) {
+      setValue(storedAge)
     }
-    fetchUserData()
   }, [])
 
   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value },
     } = event
-    if (Number(value) > 0 && Number(value) <= 100) {
-      setValue(value)
-    } else {
-      alert("1~100 사이의 값을 입력해 주세요.")
-      // setValue('')
+
+    setValue(value)
+
+    if (value.trim() === '') {
+      sessionStorage.removeItem('age')
+      return
+    }
+
+    const num = Number(value)
+    if (!isNaN(num)) {
+      sessionStorage.setItem('age', value)
     }
   }
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
   }
 
-  const isValueValid = value.trim().length > 0
-
-  // if (loading) return <div className="container center">로딩 중...</div>
+  const isValueValid = () => {
+    const num = Number(value)
+    return value.trim() !== '' && !isNaN(num) && num >= 1 && num <= 100
+  }
 
   return (
     <div className="center flex-col gap-10">
@@ -71,13 +62,11 @@ export default function AgeForm({ url }: AgeFormProps) {
           onChange={onChange}
           required
         />
-        <APIButton
-          url={`${url}`}
-          path="info/input/gender"
+        <RedirectButton
+          path={path}
           name="다음"
-          data={{ age: value }}
-          method="PATCH"
-          disabled={!isValueValid}
+          className="w-full"
+          disabled={!isValueValid()}
         />
       </form>
     </div>

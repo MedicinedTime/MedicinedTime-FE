@@ -3,7 +3,7 @@ import GenderForm from './GenderForm'
 export default function InputGenderPage() {
   return (
     <div className="wrap">
-      <GenderForm url={'/api/gender'} />
+      <GenderForm path={'info/input/medicine'} />
     </div>
   )
 }

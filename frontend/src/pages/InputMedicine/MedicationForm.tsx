@@ -1,40 +1,30 @@
-import { APIButton } from '@/components/Button'
+import { RedirectButton } from '@/components/Button'
 import { Text5xl } from '@/components/Texts'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import MedicationCard from './MedicationCard'
 import { Medication } from './MedicationType'
+import FormProps from '@/types/FormProps'
 
-type MedicationFormProps = {
-  url: string
-}
+const LOCAL_STORAGE_KEY = 'medications'
 
-export default function MedicationForm({ url }: MedicationFormProps) {
-  const [loading, setLoading] = useState(true)
+export default function MedicationForm({ path } : FormProps) {
   const [currentMedication, setCurrentMedication] = useState<Medication>({ type: '', day: '', frequency: '' })
   const [savedMedications, setSavedMedications] = useState<Medication[]>([])
   const [medicationTags, setMedicationTags] = useState<string[]>([])
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`${url}`, {
-          withCredentials: true,
-        })
-        if (response.data && response.data.medications) {
-          setSavedMedications(response.data.medications)
-
-          const tags = response.data.medications.map((med: Medication) => med.type)
-          setMedicationTags(tags)
-        }
-      } catch (error) {
-        console.error('사용자 데이터 불러오기 실패:', error)
-      } finally {
-        setLoading(false)
+    try {
+      const storedData = sessionStorage.getItem(LOCAL_STORAGE_KEY)
+      if (storedData) {
+        const parsed = JSON.parse(storedData) as Medication[]
+        setSavedMedications(parsed)
+        const tags = parsed.map((med) => med.type)
+        setMedicationTags(tags)
       }
+    } catch (error) {
+      console.error('로컬 스토리지 데이터 불러오기 실패:', error)
     }
-    fetchUserData()
-  }, [url])
+  }, [])
 
   const handleMedicationChange = (updatedMedication: Medication) => {
     setCurrentMedication(updatedMedication)
@@ -47,25 +37,30 @@ export default function MedicationForm({ url }: MedicationFormProps) {
       currentMedication.frequency.trim() !== '' &&
       !medicationTags.includes(currentMedication.type)
     ) {
-      setMedicationTags([...medicationTags, currentMedication.type])
-      setSavedMedications([...savedMedications, { ...currentMedication }])
+      const updatedMedications = [...savedMedications, { ...currentMedication }]
+      const updatedTags = [...medicationTags, currentMedication.type]
+
+      setSavedMedications(updatedMedications)
+      setMedicationTags(updatedTags)
       setCurrentMedication({ type: '', day: '', frequency: '' })
+      sessionStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedMedications))
     }
   }
 
   const handleRemoveTag = (tagToRemove: string) => {
-    setMedicationTags(medicationTags.filter((tag) => tag !== tagToRemove))
-    setSavedMedications(savedMedications.filter((med) => med.type !== tagToRemove))
+    const updatedMedications = savedMedications.filter((med) => med.type !== tagToRemove)
+    const updatedTags = medicationTags.filter((tag) => tag !== tagToRemove)
+
+    setSavedMedications(updatedMedications)
+    setMedicationTags(updatedTags)
+    sessionStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedMedications))
   }
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
   }
-  
-  const apiData = {
-    medications: savedMedications,
-    total: savedMedications.length.toString(),
-  }
+
+  const isValid = savedMedications.length > 0
 
   return (
     <div className="container center flex-col gap-10">
@@ -104,13 +99,11 @@ export default function MedicationForm({ url }: MedicationFormProps) {
           </div>
         )}
 
-        <APIButton
-          url={`${url}`}
-          path={'info/check'}
-          name={'다음 단계로 이동'}
-          data={apiData}
-          method={'PATCH'}
+        <RedirectButton
+          path={path}
+          name="다음 단계로 이동"
           className="w-full"
+          disabled={!isValid}
         />
       </form>
     </div>

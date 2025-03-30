@@ -67,3 +67,29 @@ npm install
 # 3. 개발 서버 실행
 npm run dev
 ```
+
+<br/>
+
+## 데모 페이지
+### 랜딩 페이지
+![랜딩](https://github.com/user-attachments/assets/71e7da52-06eb-4ae6-b71e-9cb0d01f9d43)
+
+### 이름 입력
+![이름](https://github.com/user-attachments/assets/9107486e-b5ef-445f-a28a-5951fed7835d)
+
+### 나이 입력
+![나이](https://github.com/user-attachments/assets/78729893-8b7b-485c-a88e-c905dc839c42)
+
+### 성별 선택
+![성별](https://github.com/user-attachments/assets/d7d94a5e-8df4-4ac0-b830-e274f7d7d2ac)
+
+### 복용 중인 약물들 입력
+![약물](https://github.com/user-attachments/assets/0f4693a5-3712-460c-940d-0d9eb58f3498)
+
+
+### 입력한 정보 확인
+![확인](https://github.com/user-attachments/assets/c8e37fb5-090c-4a33-9aef-fd3a092694d8)
+
+
+### 챗봇과 채팅
+![챗봇](https://github.com/user-attachments/assets/69d13013-be65-4ce0-ae51-b346a20a1855)

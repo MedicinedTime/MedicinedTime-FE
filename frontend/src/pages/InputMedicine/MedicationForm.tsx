@@ -7,7 +7,7 @@ import FormProps from '@/types/FormProps'
 
 const LOCAL_STORAGE_KEY = 'medications'
 
-export default function MedicationForm({ path } : FormProps) {
+export default function MedicationForm({ path }: FormProps) {
   const [currentMedication, setCurrentMedication] = useState<Medication>({ type: '', day: '', frequency: '' })
   const [savedMedications, setSavedMedications] = useState<Medication[]>([])
   const [medicationTags, setMedicationTags] = useState<string[]>([])

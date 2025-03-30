@@ -3,7 +3,7 @@ import { RedirectButton } from '../../components/Button'
 import { useEffect, useState } from 'react'
 import FormProps from '@/types/FormProps'
 
-export default function NameForm({ path } : FormProps) {
+export default function NameForm({ path }: FormProps) {
   const [value, setValue] = useState('')
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function NameForm({ path } : FormProps) {
         />
         <RedirectButton
           name="다음"
-          path="info/input/age"
+          path={path}
           className="w-full"
           disabled={!value.trim()}
         />

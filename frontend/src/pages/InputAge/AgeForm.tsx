@@ -3,8 +3,9 @@ import { RedirectButton } from '@/components/Button'
 import { useEffect, useState } from 'react'
 import FormProps from '@/types/FormProps'
 
-const InputLayout = "text-2xl text-center w-full h-16 bg-white border-2 focus:border-myLightGreen focus:outline-none"
-const InputExcept = "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+const InputLayout = 'text-2xl text-center w-full h-16 bg-white border-2 focus:border-myLightGreen focus:outline-none'
+const InputExcept =
+  '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
 const InputClassName = `${InputLayout} ${InputExcept}`
 
 export default function AgeForm({ path }: FormProps) {

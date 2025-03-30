@@ -53,20 +53,44 @@ export default function Card() {
       <table>
         <tbody>
           <tr id="name">
-            <th scope="row" className={thStyle}>이름</th>
-            <td colSpan={2} className={tdStyle}>
+            <th
+              scope="row"
+              className={thStyle}
+            >
+              이름
+            </th>
+            <td
+              colSpan={2}
+              className={tdStyle}
+            >
               {data?.name || '-'}
             </td>
           </tr>
           <tr id="age">
-            <th scope="row" className={thStyle}>나이</th>
-            <td colSpan={2} className={tdStyle}>
+            <th
+              scope="row"
+              className={thStyle}
+            >
+              나이
+            </th>
+            <td
+              colSpan={2}
+              className={tdStyle}
+            >
               {data?.age || '-'}
             </td>
           </tr>
           <tr id="gender">
-            <th scope="row" className={thStyle}>성별</th>
-            <td colSpan={2} className={tdStyle}>
+            <th
+              scope="row"
+              className={thStyle}
+            >
+              성별
+            </th>
+            <td
+              colSpan={2}
+              className={tdStyle}
+            >
               {data ? getGender(data.gender) : '-'}
             </td>
           </tr>
@@ -97,11 +121,17 @@ export default function Card() {
             </>
           ) : (
             <tr>
-              <th scope="row" className={thStyle}>
+              <th
+                scope="row"
+                className={thStyle}
+              >
                 복용 중인 <br />
                 약의 종류
               </th>
-              <td colSpan={2} className={tdStyle}>
+              <td
+                colSpan={2}
+                className={tdStyle}
+              >
                 -
               </td>
             </tr>

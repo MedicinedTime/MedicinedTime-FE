@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormProps from '@/types/FormProps'
 
-export default function GenderForm({ path } : FormProps) {
+export default function GenderForm({ path }: FormProps) {
   const navigate = useNavigate()
   const [selectedGender, setSelectedGender] = useState<string | null>(null)
   const [hasPreviousSelection, setHasPreviousSelection] = useState(false)

@@ -1,11 +1,8 @@
-import { usePostStore } from '@/stores/postStore';
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { usePostStore } from '@/stores/postStore'
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-type ReactButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->
+type ReactButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
 const buttonLayout = 'btn bg-myLightGreen hover:bg-myHoverLightGreen'
 const buttonText = 'text-white text-xl'
@@ -31,14 +28,7 @@ export const RedirectButton = ({
     navigate(`/${path}`)
   }
 
-  const className = [
-    _className,
-    buttonLayout,
-    buttonText,
-    disabled ? disabledStyle : ''
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const className = [_className, buttonLayout, buttonText, disabled ? disabledStyle : ''].filter(Boolean).join(' ')
 
   return (
     <button
@@ -64,14 +54,14 @@ type APIButtonProps = ReactButtonProps & {
   disabled?: boolean
 }
 
-export const APIButton = ({ 
+export const APIButton = ({
   className: _className,
   url,
-  path, 
+  path,
   name,
   data,
   method = 'PATCH',
-  disabled = false
+  disabled = false,
 }: APIButtonProps) => {
   const { isLoading, postData, patchData } = usePostStore()
   const navigate = useNavigate()
@@ -92,10 +82,10 @@ export const APIButton = ({
     _className,
     buttonLayout,
     buttonText,
-    disabled || isLoading ? 'opacity-100 cursur-not-allowed' : ''
+    disabled || isLoading ? 'opacity-100 cursur-not-allowed' : '',
   ]
-  .filter(Boolean)
-  .join(' ')
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <button

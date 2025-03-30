@@ -2,8 +2,8 @@ import { RedirectButton } from '@/components/Button'
 import { Title } from '@/components/Texts'
 
 export default function Hero() {
-  sessionStorage.clear();
-  
+  sessionStorage.clear()
+
   return (
     <div className="container center flex-col gap-10">
       <div className="flex flex-col justify-center items-center gap-3">

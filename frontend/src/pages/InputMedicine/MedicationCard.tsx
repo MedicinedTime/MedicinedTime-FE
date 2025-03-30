@@ -37,14 +37,12 @@ export default function MedicationCard({ medication, onChange, onAdd }: Medicati
     if (isFormComplete) {
       onAdd()
     } else {
-      alert("모든 칸을 입력해 주세요.")
+      alert('모든 칸을 입력해 주세요.')
     }
   }
 
-  const isFormComplete = 
-  medication.type.trim() !== '' && 
-  medication.day.trim() !== '' && 
-  medication.frequency.trim() !== ''
+  const isFormComplete =
+    medication.type.trim() !== '' && medication.day.trim() !== '' && medication.frequency.trim() !== ''
 
   return (
     <div className={CardClassName}>

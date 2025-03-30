@@ -7,8 +7,8 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: '@', replacement: '/src' },
-      { find: 'node_modules', replacement: '/node_modules' }
-    ]
+      { find: 'node_modules', replacement: '/node_modules' },
+    ],
   },
   server: {
     port: 3000,
@@ -19,6 +19,6 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-    }
-  }
+    },
+  },
 })

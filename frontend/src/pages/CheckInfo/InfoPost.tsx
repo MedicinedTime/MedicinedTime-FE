@@ -3,12 +3,12 @@ import Card from './Card'
 import { RedirectButton, APIButton } from '@/components/Button'
 
 type InfoPostProps = {
-  editPath: string,
-  chatPath: string,
+  editPath: string
+  chatPath: string
   url: string
 }
 
-export default function InfoPost({ editPath, chatPath, url } : InfoPostProps ) {
+export default function InfoPost({ editPath, chatPath, url }: InfoPostProps) {
   const name = sessionStorage.getItem('name') || ''
   const age = sessionStorage.getItem('age') || ''
   const gender = sessionStorage.getItem('gender') || ''

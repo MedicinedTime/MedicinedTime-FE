@@ -1,10 +1,9 @@
-import NameForm from "@/pages/InputName/NameForm";
-
+import NameForm from '@/pages/InputName/NameForm'
 
 export default function InputNamePage() {
-    return (
-        <section className="wrap">
-            <NameForm path={"info/input/age"}/>
-        </section>
-    )
+  return (
+    <section className="wrap">
+      <NameForm path='info/input/age' />
+    </section>
+  )
 }

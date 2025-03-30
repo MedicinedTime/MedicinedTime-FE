@@ -35,19 +35,19 @@ export default function Chat({ url }: ChatProps) {
           withCredentials: true,
         })
         const history: ChatHistory[] | null = response.data
-        
+
         if (history && Array.isArray(history) && history.length > 0) {
           const sortedHistory = [...history].sort((a, b) => a.id - b.id)
-          
+
           const historyMessages: ChatMessage[] = []
           sortedHistory.forEach((item) => {
             historyMessages.push({ type: 'question', data: item.question })
             historyMessages.push({ type: 'answer', data: item.answer })
           })
-          
+
           setMessages([
             { type: 'answer', data: '안녕하세요! 저는 챗봇 AI 약속이예요. 무엇이 궁금하신가요?' },
-            ...historyMessages
+            ...historyMessages,
           ])
         }
       } catch (error) {
